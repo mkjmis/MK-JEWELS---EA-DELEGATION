@@ -1,44 +1,485 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MK Jewels – EA DELEGATION</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>MK Jewels – EA Delegation</title>
+
+  <!-- =========================
+       PWA / APPLICATION SETTINGS
+       ========================= -->
+
+  <link rel="manifest" href="./manifest.json">
+
   <meta name="theme-color" content="#0b0b0f">
 
-  <!-- iOS support -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="MK Jewels">
+  <meta
+    name="mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black"
+  >
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="EA Delegation"
+  >
+
 
   <style>
-    html,body{
-      margin:0;
-      height:100%;
-      background:#0b0b0f;
+
+    *{
+      box-sizing:border-box;
     }
-    iframe{
+
+    html,
+    body{
+      margin:0;
+      padding:0;
+
       width:100%;
       height:100%;
-      border:0;
+
+      background:#0b0b0f;
+
+      color:#ffffff;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      overflow:hidden;
     }
+
+
+    body{
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      min-height:100vh;
+
+    }
+
+
+    .page{
+
+      width:100%;
+
+      max-width:520px;
+
+      padding:40px 25px;
+
+      text-align:center;
+
+    }
+
+
+    .logo-box{
+
+      width:78px;
+
+      height:78px;
+
+      margin:0 auto 28px auto;
+
+      border-radius:22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #23232a,
+          #08080a
+        );
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+
+    }
+
+
+    .diamond{
+
+      width:35px;
+
+      height:35px;
+
+      border:3px solid #d9b45b;
+
+      transform:rotate(45deg);
+
+      position:relative;
+
+      animation:
+        diamondPulse 1.4s ease-in-out infinite;
+
+    }
+
+
+    @keyframes diamondPulse{
+
+      0%{
+        transform:
+          rotate(45deg)
+          scale(.82);
+
+        opacity:.5;
+      }
+
+      50%{
+        transform:
+          rotate(45deg)
+          scale(1);
+
+        opacity:1;
+      }
+
+      100%{
+        transform:
+          rotate(45deg)
+          scale(.82);
+
+        opacity:.5;
+      }
+
+    }
+
+
+    h1{
+
+      margin:0;
+
+      font-size:25px;
+
+      font-weight:700;
+
+      letter-spacing:.4px;
+
+    }
+
+
+    .subtitle{
+
+      margin-top:9px;
+
+      font-size:14px;
+
+      color:#a5a5ad;
+
+    }
+
+
+    .loader{
+
+      width:46px;
+
+      height:46px;
+
+      border-radius:50%;
+
+      border:
+        4px solid rgba(255,255,255,.12);
+
+      border-top-color:#d9b45b;
+
+      margin:
+        32px auto 18px auto;
+
+      animation:
+        spin .8s linear infinite;
+
+    }
+
+
+    @keyframes spin{
+
+      to{
+        transform:rotate(360deg);
+      }
+
+    }
+
+
+    .status{
+
+      font-size:13px;
+
+      color:#b0b0b8;
+
+      margin-top:12px;
+
+    }
+
+
+    .manual{
+
+      display:none;
+
+      margin-top:26px;
+
+    }
+
+
+    .manual.show{
+      display:block;
+    }
+
+
+    .open-button{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      min-width:180px;
+
+      min-height:46px;
+
+      padding:
+        12px 24px;
+
+      border-radius:12px;
+
+      border:1px solid #d9b45b;
+
+      background:#d9b45b;
+
+      color:#111111;
+
+      text-decoration:none;
+
+      font-weight:700;
+
+      font-size:14px;
+
+      cursor:pointer;
+
+    }
+
+
+    .open-button:hover{
+      opacity:.92;
+    }
+
+
+    .small-text{
+
+      margin-top:14px;
+
+      color:#777780;
+
+      font-size:11px;
+
+    }
+
+
   </style>
+
 </head>
 
-<body>
-  <!-- 🔗 LOAD YOUR EXISTING PORTAL HERE -->
-  <iframe
-    src="https://script.google.com/macros/s/AKfycbwqGDGSKC06wf6OBpJ6LtU5Dh7DaxmO_aeeXhEWxzZ_1q30qdv2WmdPbPj9GjcMKj2-/exec"
-    allow="clipboard-read; clipboard-write"
-  ></iframe>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
+<body>
+
+
+  <div class="page">
+
+
+    <div class="logo-box">
+
+      <div class="diamond"></div>
+
+    </div>
+
+
+    <h1>
+      EA Delegation
+    </h1>
+
+
+    <div class="subtitle">
+      Opening application...
+    </div>
+
+
+    <div class="loader"></div>
+
+
+    <div
+      class="status"
+      id="status"
+    >
+      Connecting to application
+    </div>
+
+
+    <div
+      class="manual"
+      id="manualOpen"
+    >
+
+      <a
+        id="openApp"
+        class="open-button"
+        href="#"
+      >
+        OPEN APPLICATION
+      </a>
+
+
+      <div class="small-text">
+        Click above if the application does not open automatically.
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+<script>
+
+
+/**************************************************************
+ * EA DELEGATION
+ * GITHUB → GOOGLE APPS SCRIPT REDIRECT
+ **************************************************************/
+
+
+const APP_URL =
+"https://script.google.com/macros/s/AKfycbwqGDGSKC06wf6OBpJ6LtU5Dh7DaxmO_aeeXhEWxzZ_1q30qdv2WmdPbPj9GjcMKj2-/exec";
+
+
+
+/**************************************************************
+ * SET MANUAL BUTTON
+ **************************************************************/
+
+document
+  .getElementById("openApp")
+  .href = APP_URL;
+
+
+
+/**************************************************************
+ * REGISTER SERVICE WORKER
+ **************************************************************/
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener(
+    "load",
+    function () {
+
+      navigator
+        .serviceWorker
+        .register("./service-worker.js")
+        .catch(function(error){
+
+          console.log(
+            "Service Worker registration failed:",
+            error
+          );
+
+        });
+
     }
-  </script>
+  );
+
+}
+
+
+
+/**************************************************************
+ * REDIRECT TO APPS SCRIPT
+ **************************************************************/
+
+function openApplication(){
+
+  const status =
+    document.getElementById("status");
+
+  status.textContent =
+    "Opening EA Delegation...";
+
+
+  /*
+   * IMPORTANT:
+   *
+   * DO NOT USE IFRAME.
+   *
+   * Apps Script blocks external iframe embedding.
+   *
+   * window.location.replace() loads the Apps Script
+   * application as the main browser page.
+   */
+
+  window.location.replace(
+    APP_URL
+  );
+
+}
+
+
+
+/**************************************************************
+ * FALLBACK BUTTON
+ **************************************************************/
+
+setTimeout(
+  function(){
+
+    document
+      .getElementById("manualOpen")
+      .classList
+      .add("show");
+
+  },
+  3500
+);
+
+
+
+/**************************************************************
+ * START
+ **************************************************************/
+
+setTimeout(
+  openApplication,
+  600
+);
+
+
+</script>
+
+
 </body>
+
 </html>
